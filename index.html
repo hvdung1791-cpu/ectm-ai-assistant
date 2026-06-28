@@ -3,51 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ECTM AI Assistant</title>
+    <title>ECTM AI Assistant V4</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <header>
-    <h1>🤖 ECTM AI</h1>
-    <p>Trợ lý AI quản lý công việc</p>
+    <h1>🤖 ECTM AI Assistant</h1>
+    <p>Trợ lý quản lý công việc, nhắc việc và ưu tiên hằng ngày</p>
 </header>
 
+<section class="summary">
+    <div>Tổng việc: <b id="totalTasks">0</b></div>
+    <div>Đã xong: <b id="doneTasks">0</b></div>
+    <div>Quá hạn: <b id="overdueTasks">0</b></div>
+    <div>Cần nhắc: <b id="remindTasks">0</b></div>
+</section>
+
 <main>
+    <div class="card">
+        <h2>➕ Thêm công việc</h2>
 
-<div class="card">
-    <h2>Thêm công việc</h2>
+        <input id="taskInput" type="text" placeholder="Nhập công việc cần làm...">
 
-    <input
-        id="taskInput"
-        type="text"
-        placeholder="Nhập công việc..."
-    >
+        <select id="priority">
+            <option value="Cao">Ưu tiên cao</option>
+            <option value="Trung bình">Ưu tiên trung bình</option>
+            <option value="Thấp">Ưu tiên thấp</option>
+        </select>
 
-    <select id="priority">
-        <option>Cao</option>
-        <option>Trung bình</option>
-        <option>Thấp</option>
-    </select>
+        <label>Ngày phải làm</label>
+        <input id="deadline" type="date">
 
-    <button onclick="addTask()">
-        Lưu công việc
-    </button>
-</div>
+        <label>Giờ nhắc</label>
+        <input id="reminderTime" type="time">
 
-<div class="card">
-    <h2>Danh sách công việc</h2>
+        <button onclick="addTask()">Lưu công việc</button>
+    </div>
 
-    <ul id="taskList">
+    <div class="card">
+        <h2>🔍 Tìm kiếm</h2>
+        <input id="searchInput" type="text" placeholder="Tìm công việc..." oninput="renderTasks()">
 
-    </ul>
+        <h3>🤖 Gợi ý AI hôm nay</h3>
+        <div id="aiSuggestion" class="ai-box"></div>
+    </div>
 
-</div>
-
+    <div class="card full">
+        <h2>📋 Danh sách công việc</h2>
+        <ul id="taskList"></ul>
+    </div>
 </main>
 
 <script src="script.js"></script>
-
 </body>
 </html>
